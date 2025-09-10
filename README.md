@@ -54,8 +54,7 @@ terraform init
 
 В исходном закомментированном блоке были ошибки:
 - имя ресурса `docker_container "1nginx"` начиналось с цифры;
-- ссылка на несуществующий ресурс `random_string_FAKE` и опечатка в `resulT`;
-- нужно было использовать правильный блок `ports`.
+- ссылка на несуществующий ресурс `random_string_FAKE` и опечатка в `resulT`.
 
 Исправленный фрагмент:
 ```hcl
@@ -86,7 +85,8 @@ resource "docker_container" "nginx" {
 terraform apply
 docker ps
 ```
-📎 *скриншот docker ps — видно контейнер example_...*
+![text](img/5.png)
+![text](img/6.png)
 
 ---
 
@@ -101,14 +101,14 @@ name = "hello_world"
 terraform apply -auto-approve
 docker ps
 ```
-📎 *скриншот docker ps — контейнер hello_world*
+![text](img/7.png)
 
 ---
 
 ### Шаг 6. Опасность `-auto-approve`
 Флаг `-auto-approve` пропускает подтверждение плана.  
-⚠️ Опасность: можно случайно создать или удалить ресурсы без проверки.  
-💡 Польза: удобен для автоматизации (CI/CD).  
+Опасность: можно случайно создать или удалить ресурсы без проверки.  
+Польза: удобен для автоматизации (CI/CD).  
 
 ---
 
@@ -117,14 +117,7 @@ docker ps
 terraform destroy -auto-approve
 ```
 
-После этого:
-```json
-{
-  "version": 4,
-  "resources": []
-}
-```
-📎 *скриншот пустого terraform.tfstate*
+![text](img/8.png)
 
 ---
 
@@ -135,20 +128,10 @@ keep_locally = true
 ```
 
 Из документации провайдера Docker:  
-> **keep_locally** — If true, then the image will not be removed on resource destruction.  
+> **keep_locally** — keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation..  
 
 Источник:  
-👉 https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/image#keep_locally
+https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/image#keep_locally
 
 ---
 
-## Что приложить в отчёт
-1. Скрин `terraform --version`.  
-2. Скрин `docker --version`.  
-3. Скрин `terraform init`.  
-4. Скрин `terraform.tfstate` с `random_password`.  
-5. Исправленный фрагмент `main.tf`.  
-6. Скрин `docker ps` с example\_... контейнером.  
-7. Скрин `docker ps` с контейнером `hello_world`.  
-8. Скрин `terraform destroy` и пустого state.  
-9. Ответ, почему образ не удалился (с ссылкой на доку).  
