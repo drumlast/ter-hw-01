@@ -39,18 +39,14 @@ personal.auto.tfvars
 ```bash
 terraform init
 ```
-📎 *скриншот terraform init*
+![text](img/3.png)
 
 ---
 
 ### Шаг 2. Генерация пароля
-В `terraform.tfstate` после `terraform apply` появилось содержимое ресурса `random_password.random_string`.  
+В `terraform.tfstate` после `terraform apply` появилось содержимое ресурса `random_password`.  
 
-Пример:
-```hcl
-random_password.random_string.result = "MyR4ndomPass1234"
-```
-📎 *скриншот куска tfstate с этим значением*
+![text](img/4.png)
 
 ---
 
