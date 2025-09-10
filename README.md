@@ -57,7 +57,7 @@ terraform init
 - ссылка на несуществующий ресурс `random_string_FAKE` и опечатка в `resulT`;
 - нужно было использовать правильный блок `ports`.
 
-✅ Исправленный фрагмент:
+Исправленный фрагмент:
 ```hcl
 resource "docker_image" "nginx" {
   name         = "nginx:latest"
