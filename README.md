@@ -86,7 +86,8 @@ resource "docker_container" "nginx" {
 terraform apply
 docker ps
 ```
-📎 *скриншот docker ps — видно контейнер example_...*
+![text](img/5.png)
+![text](img/6.png)
 
 ---
 
